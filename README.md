@@ -66,19 +66,29 @@ All metrics are from delivered orders in `data/processed/olist_analytics.duckdb`
 
 ## Tableau Dashboard
 
-**Workbook:** `dashboards/tableau/olist_analytics_dashboard.twbx`  
+**Workbooks:**
+
+- Executive Overview: `dashboards/tableau/olist_analytics_dashboard.twbx`
+- Customer 360: `dashboards/tableau/olist_customer_360_dashboard.twbx`
+
 **Data source:** `data/processed/dashboard_exports/` (13 CSV files from DuckDB KPI views)
 
 ### Executive Overview (Page 1 — Completed)
 
 ![Executive Overview](dashboards/screenshots/executive_overview.png)
 
+### Customer 360
+
+![Customer 360](dashboards/screenshots/customer_360.png)
+
+The Customer 360 dashboard analyzes customer segments by customer count, total revenue, average customer value, frequency, and recency.
+
 ### Dashboard status
 
 | Page | Status | Focus |
 |------|--------|-------|
 | Executive Overview | **Completed** | KPI scorecard, revenue trend, top categories |
-| Customer 360 | Planned | RFM segments, CLV, repeat customers |
+| Customer 360 | **Completed** | RFM segments, CLV, repeat customers |
 | Revenue & Product Performance | Planned | Category ranking, state revenue, Pareto |
 | Customer Experience & Delivery | Planned | Review scores, delay rate, delay vs. rating |
 
@@ -168,7 +178,7 @@ python3 src/ai_executive_summary.py
 python3 scripts/export_eda_charts.py
 ```
 
-**Tableau:** Open `dashboards/tableau/olist_analytics_dashboard.twbx` or connect to `data/processed/dashboard_exports/`.
+**Tableau:** Open `dashboards/tableau/olist_analytics_dashboard.twbx`, `dashboards/tableau/olist_customer_360_dashboard.twbx`, or connect to `data/processed/dashboard_exports/`.
 
 ---
 
@@ -221,7 +231,7 @@ Built an end-to-end analytics platform using Brazilian e-commerce data to clean 
 | Phase 1 | Data cleaning & DuckDB load | **Complete** |
 | Phase 2 | SQL KPI views & RFM segmentation | **Complete** |
 | Phase 3 | EDA, charts, automated reports | **Complete** |
-| Phase 4 | Tableau dashboard | **In progress** (Executive Overview complete) |
+| Phase 4 | Tableau dashboard | **In progress** (Executive Overview & Customer 360 complete) |
 | Phase 5 | GitHub portfolio release | **In progress** |
 
 ---
@@ -233,7 +243,8 @@ Built an end-to-end analytics platform using Brazilian e-commerce data to clean 
 - [x] Jupyter notebooks (cleaning, EDA)
 - [x] Python automation (load, KPI report, executive summary)
 - [x] Tableau Executive Overview (Page 1) + workbook + screenshot
-- [ ] Tableau Pages 2–4
+- [x] Tableau Customer 360 (Page 2) + workbook + screenshot
+- [ ] Tableau Pages 3–4
 - [x] Weekly KPI Excel report
 - [x] Executive summary and insights documents
 - [x] Full documentation (dictionary, methodology, EDA summary)
