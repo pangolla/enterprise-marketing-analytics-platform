@@ -88,3 +88,5 @@ logs/
 
 # Optional: uncomment to exclude generated Excel from repo
 # reports/weekly_kpi_report.xlsx
+dashboards/powerbi/
+data/sample/
