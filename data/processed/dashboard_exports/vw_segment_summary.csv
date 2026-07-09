@@ -1,0 +1,7 @@
+segment_name,customer_count,avg_clv,total_revenue,avg_frequency,avg_recency_days
+Loyal Customers,28403,201.63,5726982.21,1.1,324.0
+Potential Loyalists,30461,138.27,4211901.32,1.0,101.0
+Champions,5325,275.09,1464840.23,1.2,139.0
+Lost,6898,135.24,932909.33,1.0,337.0
+At Risk,12499,40.19,502317.66,1.0,409.0
+Other,9810,39.0,382547.36,1.0,174.0

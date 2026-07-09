@@ -1,0 +1,110 @@
+-- =============================================================================
+-- 02_load_data.sql
+-- Enterprise Marketing Analytics & Customer 360 Platform
+-- =============================================================================
+-- Purpose: Load Olist raw CSVs into staging tables, then populate fact/dim.
+-- Status:  PLACEHOLDER — requires CSVs in data/raw/
+-- Order:    Run AFTER 01_create_tables.sql
+-- =============================================================================
+-- Recommended approach for SQLite portfolio:
+--   Use src/load_to_database.py (Python + pandas) for CSV import.
+--   This SQL file documents the logical load sequence and can be adapted
+--   for .import commands or external ETL tools.
+-- =============================================================================
+
+-- -----------------------------------------------------------------------------
+-- STEP 1: Load raw CSVs into staging tables
+-- -----------------------------------------------------------------------------
+-- Files expected in data/raw/:
+--   olist_orders_dataset.csv
+--   olist_order_items_dataset.csv
+--   olist_products_dataset.csv
+--   olist_customers_dataset.csv
+--   olist_order_reviews_dataset.csv
+--   product_category_name_translation.csv
+--   olist_order_payments_dataset.csv  (optional)
+
+-- SQLite CLI example (run from project root):
+-- .mode csv
+-- .import data/raw/olist_customers_dataset.csv stg_customers_raw
+-- (Create stg_*_raw tables matching CSV columns before import)
+
+-- PLACEHOLDER: Staging load is handled by src/load_to_database.py in Phase 1.
+
+-- -----------------------------------------------------------------------------
+-- STEP 2: Populate dim_customer
+-- -----------------------------------------------------------------------------
+-- INSERT INTO dim_customer (customer_unique_id, customer_zip_prefix, customer_city, customer_state)
+-- SELECT DISTINCT
+--     customer_unique_id,
+--     customer_zip_code_prefix,
+--     customer_city,
+--     customer_state
+-- FROM stg_customers_raw;
+
+-- -----------------------------------------------------------------------------
+-- STEP 3: Populate dim_product (with English category)
+-- -----------------------------------------------------------------------------
+-- INSERT INTO dim_product (product_id, category_pt, category_en, weight_g, length_cm, height_cm, width_cm)
+-- SELECT
+--     p.product_id,
+--     p.product_category_name,
+--     COALESCE(t.product_category_name_english, p.product_category_name),
+--     p.product_weight_g,
+--     p.product_length_cm,
+--     p.product_height_cm,
+--     p.product_width_cm
+-- FROM stg_products_raw p
+-- LEFT JOIN stg_category_translation_raw t
+--     ON p.product_category_name = t.product_category_name;
+
+-- -----------------------------------------------------------------------------
+-- STEP 4: Populate dim_date (generate date spine from order dates)
+-- -----------------------------------------------------------------------------
+-- PLACEHOLDER: Generate dim_date from MIN/MAX order_purchase_timestamp
+-- See src/load_to_database.py for date dimension generation logic.
+
+-- -----------------------------------------------------------------------------
+-- STEP 5: Populate fact_orders
+-- -----------------------------------------------------------------------------
+-- INSERT INTO fact_orders (
+--     order_id, customer_key, purchase_date_key, order_status,
+--     order_purchase_timestamp, order_delivered_customer_date,
+--     order_estimated_delivery_date, is_delivered, delivery_delay_days, is_delayed
+-- )
+-- SELECT
+--     o.order_id,
+--     c.customer_key,
+--     -- purchase_date_key: join dim_date on purchase date
+--     o.order_status,
+--     o.order_purchase_timestamp,
+--     o.order_delivered_customer_date,
+--     o.order_estimated_delivery_date,
+--     CASE WHEN o.order_status = 'delivered' THEN 1 ELSE 0 END,
+--     -- delivery_delay_days: julianday(delivered) - julianday(estimated)
+--     -- is_delayed: CASE WHEN delivery_delay_days > 0 THEN 1 ELSE 0 END
+-- FROM stg_orders_raw o
+-- JOIN dim_customer c ON o.customer_id = c.customer_unique_id;  -- adjust join key after EDA
+
+-- -----------------------------------------------------------------------------
+-- STEP 6: Populate fact_order_items
+-- -----------------------------------------------------------------------------
+-- PLACEHOLDER: Join stg_order_items to fact_orders and dim_product
+
+-- -----------------------------------------------------------------------------
+-- STEP 7: Populate fact_reviews
+-- -----------------------------------------------------------------------------
+-- PLACEHOLDER: Join stg_reviews to fact_orders
+
+-- -----------------------------------------------------------------------------
+-- Validation queries (run after load)
+-- -----------------------------------------------------------------------------
+-- SELECT 'dim_customer'    AS table_name, COUNT(*) AS row_count FROM dim_customer
+-- UNION ALL
+-- SELECT 'dim_product',     COUNT(*) FROM dim_product
+-- UNION ALL
+-- SELECT 'fact_orders',     COUNT(*) FROM fact_orders
+-- UNION ALL
+-- SELECT 'fact_order_items',COUNT(*) FROM fact_order_items
+-- UNION ALL
+-- SELECT 'fact_reviews',    COUNT(*) FROM fact_reviews;
