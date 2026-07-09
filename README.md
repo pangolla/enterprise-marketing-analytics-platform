@@ -71,6 +71,7 @@ All metrics are from delivered orders in `data/processed/olist_analytics.duckdb`
 - Executive Overview: `dashboards/tableau/olist_analytics_dashboard.twbx`
 - Customer 360: `dashboards/tableau/olist_customer_360_dashboard.twbx`
 - Revenue & Product Performance: `dashboards/tableau/olist_revenue_product_dashboard.twbx`
+- Customer Experience & Delivery: `dashboards/tableau/olist_customer_experience_delivery_dashboard.twbx`
 
 **Data source:** `data/processed/dashboard_exports/` (13 CSV files from DuckDB KPI views)
 
@@ -90,6 +91,12 @@ The Customer 360 dashboard analyzes customer segments by customer count, total r
 
 The Revenue & Product Performance dashboard analyzes top product categories, revenue by state, and revenue concentration across categories using Pareto-style analysis.
 
+### Customer Experience & Delivery
+
+![Customer Experience & Delivery](dashboards/screenshots/customer_experience_delivery.png)
+
+The Customer Experience & Delivery dashboard analyzes review score distribution, delivery performance, delivery delay rate, and the relationship between delivery delays and review scores.
+
 ### Dashboard status
 
 | Page | Status | Focus |
@@ -97,7 +104,7 @@ The Revenue & Product Performance dashboard analyzes top product categories, rev
 | Executive Overview | **Completed** | KPI scorecard, revenue trend, top categories |
 | Customer 360 | **Completed** | RFM segments, CLV, repeat customers |
 | Revenue & Product Performance | **Completed** | Category ranking, state revenue, Pareto |
-| Customer Experience & Delivery | Planned | Review scores, delay rate, delay vs. rating |
+| Customer Experience & Delivery | **Completed** | Review scores, delay rate, delay vs. rating |
 
 Design specifications: `docs/dashboard_design_notes.md`  
 Build guide: `docs/powerbi_build_guide.md` (CSV field mappings also apply to Tableau)
@@ -185,7 +192,7 @@ python3 src/ai_executive_summary.py
 python3 scripts/export_eda_charts.py
 ```
 
-**Tableau:** Open `dashboards/tableau/olist_analytics_dashboard.twbx`, `dashboards/tableau/olist_customer_360_dashboard.twbx`, `dashboards/tableau/olist_revenue_product_dashboard.twbx`, or connect to `data/processed/dashboard_exports/`.
+**Tableau:** Open workbooks in `dashboards/tableau/` or connect to `data/processed/dashboard_exports/`.
 
 ---
 
@@ -238,7 +245,7 @@ Built an end-to-end analytics platform using Brazilian e-commerce data to clean 
 | Phase 1 | Data cleaning & DuckDB load | **Complete** |
 | Phase 2 | SQL KPI views & RFM segmentation | **Complete** |
 | Phase 3 | EDA, charts, automated reports | **Complete** |
-| Phase 4 | Tableau dashboard | **In progress** (Pages 1–3 complete) |
+| Phase 4 | Tableau dashboard (4 pages) | **Complete** |
 | Phase 5 | GitHub portfolio release | **In progress** |
 
 ---
@@ -249,10 +256,11 @@ Built an end-to-end analytics platform using Brazilian e-commerce data to clean 
 - [x] DuckDB analytics database + SQL KPI layer
 - [x] Jupyter notebooks (cleaning, EDA)
 - [x] Python automation (load, KPI report, executive summary)
-- [x] Tableau Executive Overview (Page 1) + workbook + screenshot
-- [x] Tableau Customer 360 (Page 2) + workbook + screenshot
-- [x] Tableau Revenue & Product Performance (Page 3) + workbook + screenshot
-- [ ] Tableau Customer Experience & Delivery (Page 4)
+- [x] Tableau dashboards (all 4 pages) + workbooks + screenshots
+  - [x] Executive Overview (Page 1)
+  - [x] Customer 360 (Page 2)
+  - [x] Revenue & Product Performance (Page 3)
+  - [x] Customer Experience & Delivery (Page 4)
 - [x] Weekly KPI Excel report
 - [x] Executive summary and insights documents
 - [x] Full documentation (dictionary, methodology, EDA summary)
