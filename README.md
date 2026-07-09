@@ -253,7 +253,7 @@ Built an end-to-end analytics platform using Brazilian e-commerce data to clean 
 ## Author
 
 **Praveen Angolla**  
-Data Analyst | Marketing Analytics | Business Intelligence | Customer Insights
+Data Analyst | Marketing Analytics | Business Intelligence | Customer Insights  
 
 Portfolio: [praveenangolla.work](https://praveenangolla.work)  
 GitHub: [github.com/pangolla](https://github.com/pangolla)
