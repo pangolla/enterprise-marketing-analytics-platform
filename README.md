@@ -150,7 +150,7 @@ Full analysis: `docs/eda_summary.md` | `reports/insights_summary.md`
 
 ```bash
 # 1. Clone and set up environment
-git clone <your-repo-url>
+git clone https://github.com/pangolla/enterprise-marketing-analytics-platform.git
 cd enterprise-marketing-analytics-platform
 python3 -m venv .venv
 source .venv/bin/activate
@@ -187,8 +187,6 @@ Dashboard-ready CSV exports in `data/processed/dashboard_exports/` and the Table
 ---
 
 ## Portfolio Project Description
-
-Copy-paste for your portfolio website:
 
 **Title:** Enterprise Marketing Analytics Platform
 
@@ -254,11 +252,18 @@ Built an end-to-end analytics platform using Brazilian e-commerce data to clean 
 
 ## Author
 
-Portfolio project — add your name, [LinkedIn](https://linkedin.com/in/your-profile), and [GitHub](https://github.com/your-username) links.
+**Praveen Angolla**  
+Data Analyst | Marketing Analytics | Business Intelligence | Customer Insights
+
+Portfolio: [praveenangolla.work](https://praveenangolla.work)  
+GitHub: [github.com/pangolla](https://github.com/pangolla)
+
+This project is part of my data analytics portfolio, focused on building end-to-end analytics workflows using Python, SQL, DuckDB, Excel reporting, and Tableau dashboards.
 
 ---
 
 ## License
 
-Dataset: Olist Brazilian E-Commerce (Kaggle).  
-Project code and documentation: MIT (or your preferred license).
+**Dataset:** [Olist Brazilian E-Commerce](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) (Kaggle) — subject to the dataset provider's terms of use.
+
+**Project code and documentation:** MIT License.
